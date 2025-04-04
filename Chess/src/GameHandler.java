@@ -62,6 +62,7 @@ public class GameHandler {
     	int x = 0;
     	int y = 0;
 
+
     	//for every bit in the bitboard given
         for (int i=0;i<64;i++) {
         	
@@ -76,12 +77,10 @@ public class GameHandler {
                 if (posIndex == index) {
                 	break;                	
                 }
-                
-                
-        	}
+            }
         }
         
-        
+
         //* by 80 in order to scale the coords to the size of the screen
         int[] pos = {x*80, y*80};
         return pos;
@@ -90,6 +89,21 @@ public class GameHandler {
 
 
 
+    public long movePiece(long bitboard, String pieceType, int squaresMoved) {
+
+        if (pieceType == "pawn") {
+            squaresMoved *= 8;
+
+            bitboard = bitboard >> squaresMoved;
+        }
+
+        return bitboard;
+    }
+
 
 
 }
+
+
+
+

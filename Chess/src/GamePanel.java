@@ -6,8 +6,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import java.util.ArrayList;
-
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable {
 	
@@ -19,10 +17,8 @@ public class GamePanel extends JPanel implements Runnable {
 	Graphics2D graphics;
 	
 	Thread gameThread;
-	
-	
-	//array of all displayed sprites for simpler graphical displaying
-	ArrayList<Sprite> displayedSprites = new ArrayList<Sprite>();
+
+	BufferedImage boardSprite = loadImage("/sprites/board_sprite.png");
 
 	
 	
@@ -54,12 +50,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		
 		graphics = (Graphics2D)g;
-		
-		
-		for (int s=0; s<displayedSprites.size(); s++) {
-			
-			graphics.drawImage(displayedSprites.get(s).img, displayedSprites.get(s).x, displayedSprites.get(s).y, null);
-		}
+
+		graphics.drawImage()
 	    
 	   
 		

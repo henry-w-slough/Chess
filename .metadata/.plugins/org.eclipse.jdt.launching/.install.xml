@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dirs>
+    <entry loc="/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.aarch64_21.0.6.v20250130-0529" stamp="1741253738000"/>
+    <entry loc="/Library/Java/JavaVirtualMachines/microsoft-11.jdk/Contents/Home" stamp="1661032044000"/>
+    <entry loc="/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home" stamp="1626879432000"/>
+    <entry loc="/Library/Java/JavaVirtualMachines/jdk-22.jdk/Contents/Home" stamp="1711117856698"/>
+    <entry loc="/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home" stamp="1648434437438"/>
+    <entry loc="/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.aarch64_21.0.6.v20250130-0529/jre" stamp="1741253738000"/>
+    <entry loc="/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home" stamp="1666172036000"/>
+    <entry loc="/Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home" stamp="1742581991758"/>
+    <entry loc="/Users/henry/Library/Java/JavaVirtualMachines/openjdk-18.0.1/Contents/Home" stamp="1650759607556"/>
+    <entry loc="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home" stamp="1733299622000"/>
+</dirs>
