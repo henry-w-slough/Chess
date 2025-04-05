@@ -3,6 +3,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -14,11 +16,16 @@ public class GamePanel extends JPanel implements Runnable {
 	int screenSize = 640;
 	int tileSize = screenSize / boardTiles;
 	
+
 	Graphics2D graphics;
-	
+
 	Thread gameThread;
 
+
+
 	BufferedImage boardSprite = loadImage("/sprites/board_sprite.png");
+
+	ArrayList<Piece> allPieces = new ArrayList<Piece>();
 
 	
 	
@@ -51,7 +58,11 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		graphics = (Graphics2D)g;
 
-		graphics.drawImage()
+		graphics.drawImage(boardSprite, 0, 0, null);
+
+		for (int s=0;s<allPieces.size();s++) {
+			graphics.drawImage(allPieces.get(s).img, allPieces.get(s).x, allPieces.get(s).y, null);
+		}
 	    
 	   
 		

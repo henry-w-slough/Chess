@@ -1,4 +1,3 @@
-
 public class GameHandler {
 
     // every single bitboard for every single piece. Each 64x long represents 64 bits, or 64 positions on the board.
@@ -17,7 +16,6 @@ public class GameHandler {
     long blackBishopPos;
     long blackKingPos;
     long blackQueenPos;
-
 
     public GameHandler() {
 
@@ -39,7 +37,7 @@ public class GameHandler {
         this.blackKnightPos = 0b0000000000000000000000000000000000000000000000000000000001000010L;
 
         //      			 	1234567812345678123456781234567812345678123456781234567812345678
-        this.whiteBishopPos = 0b0010010000000000000000000000000000000000000000000000000000100010L;
+        this.whiteBishopPos = 0b0010010000000000000000000000000000000000000000000000000000000000L;
         this.blackBishopPos = 0b0000000000000000000000000000000000000000000000000000000000100100L;
 
         //      			  1234567812345678123456781234567812345678123456781234567812345678
@@ -49,14 +47,13 @@ public class GameHandler {
         //      			   1234567812345678123456781234567812345678123456781234567812345678
         this.whiteQueenPos = 0b0000100000000000000000000000000000000000000000000000000000000000L;
         this.blackQueenPos = 0b0000000000000000000000000000000000000000000000000000000000001000L;
-
     }
 
     
     
 
     //function that returns a screen coordinate based on a given indexed piece of a bitboard.
-    public int[] bitboardToScreenPos(long bitboard, int index) {
+    public int[] getBoardPos(long bitboard, int index) {
 
     	int posIndex = 0;
     	int x = 0;
@@ -99,6 +96,12 @@ public class GameHandler {
 
         return bitboard;
     }
+
+
+
+
+
+     
 
 
 
