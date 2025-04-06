@@ -11,3 +11,43 @@ Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.eclipse
 
 !ENTRY ch.qos.logback.classic 1 0 2025-04-03 21:34:57.946
 !MESSAGE Logback config file: /Users/henry/Documents/GitHub/Chess/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.7.0.20241001-1350.xml
+!SESSION 2025-04-05 10:20:58.026 -----------------------------------------------
+eclipse.buildId=4.35.0.20250306-0811
+java.version=21.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/henry/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.eclipse.epp.package.java.product -keyring /Users/henry/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-05 10:20:59.041
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-04-05 10:21:00.095
+!MESSAGE Logback config file: /Users/henry/Documents/GitHub/Chess/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.osgi 4 0 2025-04-05 10:21:00.540
+!MESSAGE Application error
+!STACK 1
+org.eclipse.swt.SWTException: Device is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4932)
+	at org.eclipse.swt.SWT.error(SWT.java:4847)
+	at org.eclipse.swt.SWT.error(SWT.java:4818)
+	at org.eclipse.swt.widgets.Display.error(Display.java:1211)
+	at org.eclipse.swt.widgets.Display.checkDevice(Display.java:711)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3985)
+	at org.eclipse.ui.internal.Workbench.spinEventQueueToUpdateSplash(Workbench.java:872)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:649)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:576)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:178)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:149)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:115)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:467)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:298)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:670)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:607)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1492)
