@@ -46,8 +46,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		
 		graphics = (Graphics2D)g;
-	    
-		graphics.dispose();
+	
 	}
 		
 	
