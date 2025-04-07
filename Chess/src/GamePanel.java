@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -19,6 +20,9 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 	Thread gameThread;
+
+
+	BufferedImage boardImage = loadImage("/sprites/board_sprite.png");
 	
 	
 	
@@ -44,9 +48,13 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	//overriding built in paintComponent() function for custom screen actions
 	public void paintComponent(Graphics g) {
-		
+
+
 		graphics = (Graphics2D)g;
-	
+
+		graphics.drawImage(boardImage, 0, 0, null);
+
+		
 	}
 		
 	
@@ -61,6 +69,7 @@ public class GamePanel extends JPanel implements Runnable {
 	        return null;  // Return null if the image cannot be loaded
 	    }
 	}
+
 
 
 

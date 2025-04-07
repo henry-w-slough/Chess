@@ -19,6 +19,16 @@ public class App {
     	window.pack();
     	window.setLocationRelativeTo(null);
     	window.setVisible(true);
+
+
+
+
+		//setting up game (pieces, board, etc...)
+		GameHandler gameHandler = new GameHandler();
+
+		gameHandler.allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_king.png"), "king", 0, gameHandler.allSquares.indexOf("K") % 8 * 80, gameHandler.allSquares.indexOf("K") / 8 * 80));
+
+		
     
     	
 

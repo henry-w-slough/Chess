@@ -7,6 +7,8 @@ public class Piece {
 
     String pieceType;
 
+	int color;
+
 
     int x;
     int y;
@@ -14,12 +16,14 @@ public class Piece {
     
 
 
-    public Piece(BufferedImage img, String pieceType, int x, int y) {
+    public Piece(BufferedImage img, String pieceType, int color, int x, int y) {
 
         this.img = img;
 
 
         this.pieceType = pieceType;
+		
+		this.color = color;
 
         
         this.x = x;
