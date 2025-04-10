@@ -23,6 +23,8 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 	BufferedImage boardImage = loadImage("/sprites/board_sprite.png");
+
+	ArrayList<Piece> allPieces = new ArrayList<Piece>();
 	
 	
 	
@@ -42,19 +44,19 @@ public class GamePanel extends JPanel implements Runnable {
 	public void run() {
 		repaint();
 	}
-		
+	
 	
 	
 	
 	//overriding built in paintComponent() function for custom screen actions
 	public void paintComponent(Graphics g) {
-
-
 		graphics = (Graphics2D)g;
 
 		graphics.drawImage(boardImage, 0, 0, null);
 
-		
+		for (int s=0;s<allPieces.size();s++) {
+			graphics.drawImage(allPieces.get(s).img, allPieces.get(s).x, allPieces.get(s).y, null);
+		}
 	}
 		
 	
@@ -72,5 +74,18 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 
+
+	public void updatePieces(ArrayList<Piece> pieceGroup) {
+		
+		//adding (or removing) sprites on the board from gameHandler. This function is called from App.java
+		for (int s=0;s<pieceGroup.size();s++) {
+			if (allPieces.contains(pieceGroup.get(s))) {
+				continue;
+			}
+			else {
+				allPieces.add(pieceGroup.get(s));
+			}
+		}	
+	}
 
 }
