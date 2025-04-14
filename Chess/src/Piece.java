@@ -1,12 +1,15 @@
+import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Piece {
     
     BufferedImage img;
 
+    Point pos;
 
-    int x;
-    int y;
+
+    ArrayList<Integer> possibleMoves;
 
     
 
@@ -14,10 +17,12 @@ public class Piece {
     public Piece(BufferedImage img, int x, int y) {
 
         this.img = img;
-
         
-        this.x = x;
-        this.y = y;
+        
+        this.pos = new Point(x, y);
+
+
+        this.possibleMoves = new ArrayList<Integer>();
         
 
         

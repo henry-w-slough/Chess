@@ -1,7 +1,6 @@
 
 import javax.swing.JFrame;
 
-import java.util.HashMap;
 
 public class App {
 // Main driver method
@@ -72,12 +71,26 @@ public class App {
 
 
 
+		//mouse for mouse event listening
+		Mouse mouseListener = new Mouse();
+
+		gamePanel.addMouseListener(mouseListener);
+		gamePanel.addMouseMotionListener(mouseListener);
+
 
 
 
 
     	while (gamePanel.gameThread != null) {
     		gamePanel.run();
+
+
+			for (int s=0;s<gameHandler.allPieces.size();s++) {
+				if (gameHandler.allPieces.get(s).pos.x >= mouseListener.mousePosition.x) {
+					gameHandler.allPieces.remove(gameHandler.allPieces.get(s));
+				}
+			}
+
 
 			gamePanel.updatePieces(gameHandler.allPieces);
     	}

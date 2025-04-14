@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
 		graphics.drawImage(boardImage, 0, 0, null);
 
 		for (int s=0;s<allPieces.size();s++) {
-			graphics.drawImage(allPieces.get(s).img, allPieces.get(s).x, allPieces.get(s).y, null);
+			graphics.drawImage(allPieces.get(s).img, allPieces.get(s).pos.x, allPieces.get(s).pos.y, null);
 		}
 	}
 		
