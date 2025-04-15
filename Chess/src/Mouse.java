@@ -9,7 +9,7 @@ public class Mouse implements MouseInputListener{
 
     public Mouse() {
 
-        mousePosition = new int[]{0, 0};
+        mousePosition = new int[]{-100, -100};
     }
 
 
@@ -22,7 +22,8 @@ public class Mouse implements MouseInputListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        mousePosition[0] = e.getX();
+        mousePosition[1] = e.getY();
     }
 
 
@@ -45,11 +46,6 @@ public class Mouse implements MouseInputListener{
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        mousePosition[0] = e.getX();
-        mousePosition[1] = e.getY();
-
-        
-        System.out.println("Pos: (" + mousePosition[0] + ", " + mousePosition[1] + ")");
 
     }
 

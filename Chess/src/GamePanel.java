@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 	BufferedImage boardImage = loadImage("/sprites/board_sprite.png");
 
-	ArrayList<Piece> allPieces = new ArrayList<Piece>();
+	public ArrayList<Piece> allPieces = new ArrayList<Piece>();
 	
 	
 	
@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
 		graphics.drawImage(boardImage, 0, 0, null);
 
 		for (int s=0;s<allPieces.size();s++) {
-			graphics.drawImage(allPieces.get(s).img, allPieces.get(s).pos.x, allPieces.get(s).pos.y, null);
+			graphics.drawImage(allPieces.get(s).img, allPieces.get(s).pos[0], allPieces.get(s).pos[1], null);
 		}
 	}
 		

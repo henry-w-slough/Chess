@@ -3,8 +3,7 @@ import java.util.Arrays;
 
 public class GameHandler {
 
-    ArrayList<Piece> allPieces;
-
+    ArrayList<Piece> allPieces = new ArrayList<Piece>();;
 
     ArrayList<String> fullBoard;
 
