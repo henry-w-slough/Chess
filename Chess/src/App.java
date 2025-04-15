@@ -63,6 +63,7 @@ public class App {
 				gameHandler.allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_queen.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
 			}
 			else if (gameHandler.fullBoard.get(i) == "q") {
+				System.out.println("fuck you");
 				gameHandler.allPieces.add(new Piece(gamePanel.loadImage("/sprites/b_queen.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
 			}
 
@@ -72,23 +73,21 @@ public class App {
 
 
 		//mouse for mouse event listening
-		Mouse mouseListener = new Mouse();
+		Mouse mouse = new Mouse();
 
-		gamePanel.addMouseListener(mouseListener);
-		gamePanel.addMouseMotionListener(mouseListener);
-
+		gamePanel.addMouseListener(mouse);
+		gamePanel.addMouseMotionListener(mouse);
+		 
 
 
 
 
     	while (gamePanel.gameThread != null) {
+
     		gamePanel.run();
 
-
-			for (int s=0;s<gameHandler.allPieces.size();s++) {
-				if (gameHandler.allPieces.get(s).pos.x >= mouseListener.mousePosition.x) {
-					gameHandler.allPieces.remove(gameHandler.allPieces.get(s));
-				}
+			for (int s=0;s<gameHandler.allPieces;s++) {
+				
 			}
 
 
