@@ -82,29 +82,36 @@ public class App {
 		gamePanel.addMouseListener(mouse);
 		gamePanel.addMouseMotionListener(mouse);
 
-
-		for (int x=0;x<allPieces.size();x++) {
-			System.out.println(allPieces.get(x));
-		}
 		 
 
 
 
 
     	while (gamePanel.gameThread != null) {
-
+                                               
     		gamePanel.run();
+
+		//stops null error on first frame
+		if (mouse.selectedPiece != null) {
+			//updates selected piece position to mouse position with adjustments
+			mouse.selectedPiece.pos[0] = mouse.mousePosition[0] - gamePanel.tileSize / 2;
+			mouse.selectedPiece.pos[1] = mouse.mousePosition[1] - gamePanel.tileSize / 2;
+		}
 			
-			for (int s = allPieces.size() - 1; s >= 0; s--) {
+			// iterating through every piece and seeing the mouse is over it       
+			for (int s = allPieces.size()-1; s >= 0; s--) {
 				if (mouse.mousePosition[0] >= allPieces.get(s).pos[0] && mouse.mousePosition[0] <= allPieces.get(s).pos[0] + 80) {
 					if (mouse.mousePosition[1] >= allPieces.get(s).pos[1] && mouse.mousePosition[1] <= allPieces.get(s).pos[1] + 80) {
-						allPieces.remove(s); // Safely remove the element
-						System.out.println(s);
+						mouse.selectedPiece = allPieces.get(s);
 					}
 				}
 			}
 
-			gamePanel.updatePieces(allPieces);
+
+
+
+			gamePanel.allPieces = allPieces;
+
     	}
     	
     	

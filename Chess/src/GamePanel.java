@@ -73,38 +73,4 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
 
-
-
-	public void updatePieces(ArrayList<Piece> pieceGroup) {
-		
-		//adding (or removing) sprites on the board from gameHandler. This function is called from App.java
-		if (pieceGroup.size() > allPieces.size()) {
-
-			for (int s=0;s<pieceGroup.size();s++) {
-
-				if (allPieces.contains(pieceGroup.get(s))) {
-					continue;
-				}
-
-				else {
-					allPieces.add(pieceGroup.get(s));
-				}
-
-			}	
-		}
-
-
-		if (pieceGroup.size() < allPieces.size()) {
-
-			for (int s=0;s<pieceGroup.size();s++) {
-
-				if (!pieceGroup.contains(allPieces.get(s))) {
-					allPieces.remove(allPieces.get(s));
-				}
-			}
-
-		}
-
-	}
-
 }
