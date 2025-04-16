@@ -81,6 +81,11 @@ public class App {
 
 		gamePanel.addMouseListener(mouse);
 		gamePanel.addMouseMotionListener(mouse);
+
+
+		for (int x=0;x<allPieces.size();x++) {
+			System.out.println(allPieces.get(x));
+		}
 		 
 
 
@@ -90,12 +95,12 @@ public class App {
 
     		gamePanel.run();
 			
-			for (int s=0;s<gamePanel.allPieces.size();s++) {
-				if ( mouse.mousePosition[0] >= allPieces.get(s).pos[0] && mouse.mousePosition[0] <= allPieces.get(s).pos[0] + 70) {
-					if (mouse.mousePosition[1] <= allPieces.get(s).pos[1] && mouse.mousePosition[1] <= allPieces.get(s).pos[1] + 70) {
-						System.out.println("in piece" + allPieces.get(s));
+			for (int s = allPieces.size() - 1; s >= 0; s--) {
+				if (mouse.mousePosition[0] >= allPieces.get(s).pos[0] && mouse.mousePosition[0] <= allPieces.get(s).pos[0] + 80) {
+					if (mouse.mousePosition[1] >= allPieces.get(s).pos[1] && mouse.mousePosition[1] <= allPieces.get(s).pos[1] + 80) {
+						allPieces.remove(s); // Safely remove the element
+						System.out.println(s);
 					}
-					
 				}
 			}
 
