@@ -15,7 +15,11 @@ public class Mouse implements MouseInputListener{
 
     public Mouse(ArrayList<Piece> allPieces) {
 
-        mousePosition = new int[]{-100, -100};
+        mousePosition = new int[]{-50, -100};
+
+        this.allPieces = allPieces;
+
+        selectedPiece = null;
 
     }
 
@@ -23,26 +27,28 @@ public class Mouse implements MouseInputListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        
     }
 
 
     @Override
     public void mousePressed(MouseEvent e) {
-        // Check if the mouse is over a piece and select it
-        for (Piece piece : ) { // Assuming GamePanel.allPieces is accessible
-            if (e.getX() >= piece.pos[0] && e.getX() <= piece.pos[0] + 80 &&
-                e.getY() >= piece.pos[1] && e.getY() <= piece.pos[1] + 80) {
-                selectedPiece = piece;
+        for (int x=0;x<allPieces.size();x++) {
+            if (allPieces.get(x).pos[0] <= e.getX() && allPieces.get(x).pos[0] + 80 >= e.getX() &&
+                allPieces.get(x).pos[1] <= e.getY() && allPieces.get(x).pos[1] + 80 >= e.getY()) {
+                selectedPiece = allPieces.get(x);
+                System.out.println("Selected piece at: " + selectedPiece.pos[0] + ", " + selectedPiece.pos[1]);
                 break;
+            } else {
+                selectedPiece = null;
             }
         }
+        
     }
 
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        selectedPiece = null;
 
     }
 
@@ -60,15 +66,16 @@ public class Mouse implements MouseInputListener{
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        mousePosition[0] = e.getX();
-        mousePosition[1] = e.getY();
-
+        if (selectedPiece != null) {
+            selectedPiece.pos[0] = e.getX() - 40; // Assuming the piece is 80x80 pixels
+            selectedPiece.pos[1] = e.getY() - 40; // Adjusting for the piece's center position
+        }
     }
 
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        mousePosition = new int[]{e.getX(), e.getY()};
     }
 
 

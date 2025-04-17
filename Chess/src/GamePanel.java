@@ -13,7 +13,7 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	int boardTiles = 8;
 	int screenSize = 640;
-	int tileSize = screenSize / boardTiles;
+	//int tileSize = screenSize / boardTiles;
 	
 
 	Graphics2D graphics;

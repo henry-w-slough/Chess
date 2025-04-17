@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class GameHandler {
+public class boardHandler {
 
     ArrayList<Piece> allPieces = new ArrayList<Piece>();;
 
@@ -10,7 +10,7 @@ public class GameHandler {
 
 
 
-    public GameHandler() {
+    public boardHandler() {
 
         this.allPieces = new ArrayList<Piece>();
 

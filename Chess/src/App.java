@@ -21,7 +21,7 @@ public class App {
     	GamePanel gamePanel = new GamePanel();
 
 
-		GameHandler gameHandler = new GameHandler();
+		boardHandler gameHandler = new boardHandler();
 
 		ArrayList<String> fullBoard = gameHandler.fullBoard;
 
@@ -35,40 +35,40 @@ public class App {
 
 		for (int i=0;i<64;i++) {
 			if (fullBoard.get(i) == "P") {
-				allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_pawn.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
+				allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_pawn.png"), (i % 8) * 80, (i / 8) * 80));
 			}
 			else if (gameHandler.fullBoard.get(i) == "p") {
-				gameHandler.allPieces.add(new Piece(gamePanel.loadImage("/sprites/b_pawn.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
+				gameHandler.allPieces.add(new Piece(gamePanel.loadImage("/sprites/b_pawn.png"), (i % 8) * 80, (i / 8) * 80));
 			}
 			else if (gameHandler.fullBoard.get(i) == "R") {
-				allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_rook.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
+				allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_rook.png"), (i % 8) * 80, (i / 8) * 80));
 			}
 			else if (fullBoard.get(i) == "r") {
-				allPieces.add(new Piece(gamePanel.loadImage("/sprites/b_rook.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
+				allPieces.add(new Piece(gamePanel.loadImage("/sprites/b_rook.png"), (i % 8) * 80, (i / 8) * 80));
 			}
 			else if (fullBoard.get(i) == "B") {
-				allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_bishop.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
+				allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_bishop.png"), (i % 8) * 80, (i / 8) * 80));
 			}
 			else if (fullBoard.get(i) == "b") {
-				allPieces.add(new Piece(gamePanel.loadImage("/sprites/b_bishop.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
+				allPieces.add(new Piece(gamePanel.loadImage("/sprites/b_bishop.png"), (i % 8) * 80, (i / 8) * 80));
 			}
 			else if (fullBoard.get(i) == "N") {
-				allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_knight.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
+				allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_knight.png"), (i % 8) * 80, (i / 8) * 80));
 			}
 			else if (fullBoard.get(i) == "n") {
-				allPieces.add(new Piece(gamePanel.loadImage("/sprites/b_knight.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
+				allPieces.add(new Piece(gamePanel.loadImage("/sprites/b_knight.png"), (i % 8) * 80, (i / 8) * 80));
 			}
 			else if (fullBoard.get(i) == "K") {
-				allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_king.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
+				allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_king.png"), (i % 8) * 80, (i / 8) * 80));
 			}
 			else if (fullBoard.get(i) == "k") {
-				allPieces.add(new Piece(gamePanel.loadImage("/sprites/b_king.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
+				allPieces.add(new Piece(gamePanel.loadImage("/sprites/b_king.png"), (i % 8) * 80, (i / 8) * 80));
 			}
 			else if (fullBoard.get(i) == "Q") {
-				allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_queen.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
+				allPieces.add(new Piece(gamePanel.loadImage("/sprites/w_queen.png"), (i % 8) * 80, (i / 8) * 80));
 			}
 			else if (fullBoard.get(i) == "q") {
-				allPieces.add(new Piece(gamePanel.loadImage("/sprites/b_queen.png"), (i % 8) * gamePanel.tileSize, (i / 8) * gamePanel.tileSize));
+				allPieces.add(new Piece(gamePanel.loadImage("/sprites/b_queen.png"), (i % 8) * 80, (i / 8) * 80));
 			}
 
 			
@@ -77,7 +77,7 @@ public class App {
 
 
 		//mouse for mouse event listening
-		Mouse mouse = new Mouse();
+		Mouse mouse = new Mouse(allPieces);
 
 		gamePanel.addMouseListener(mouse);
 		gamePanel.addMouseMotionListener(mouse);
@@ -91,25 +91,7 @@ public class App {
                                                
     		gamePanel.run();
 
-		//stops null error on first frame
-		if (mouse.selectedPiece != null) {
-			//updates selected piece position to mouse position with adjustments
-			mouse.selectedPiece.pos[0] = mouse.mousePosition[0] - gamePanel.tileSize / 2;
-			mouse.selectedPiece.pos[1] = mouse.mousePosition[1] - gamePanel.tileSize / 2;
-		}
 			
-			// iterating through every piece and seeing the mouse is over it       
-			for (int s = allPieces.size()-1; s >= 0; s--) {
-				if (mouse.mousePosition[0] >= allPieces.get(s).pos[0] && mouse.mousePosition[0] <= allPieces.get(s).pos[0] + 80) {
-					if (mouse.mousePosition[1] >= allPieces.get(s).pos[1] && mouse.mousePosition[1] <= allPieces.get(s).pos[1] + 80) {
-						mouse.selectedPiece = allPieces.get(s);
-					}
-				}
-			}
-
-
-
-
 			gamePanel.allPieces = allPieces;
 
     	}
