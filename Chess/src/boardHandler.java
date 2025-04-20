@@ -1,21 +1,21 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class boardHandler {
+public class BoardHandler {
 
     ArrayList<Piece> allPieces = new ArrayList<Piece>();;
 
-    ArrayList<String> fullBoard;
+    ArrayList<String> initializationBoard;
 
 
 
 
-    public boardHandler() {
+    public BoardHandler() {
 
         this.allPieces = new ArrayList<Piece>();
 
-
-        this.fullBoard = new ArrayList<String>(Arrays.asList(
+        //used to initalize board
+        this.initializationBoard = new ArrayList<String>(Arrays.asList(
             "r", "n", "b", "q", "k", "b", "n", "r", 
             "p", "p", "p", "p", "p", "p", "p", "p", 
             "-", "-", "-", "-", "-", "-", "-", "-", 
