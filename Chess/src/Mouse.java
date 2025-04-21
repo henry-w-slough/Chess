@@ -69,15 +69,31 @@ public class Mouse implements MouseInputListener{
 
     @Override
     public void mouseReleased(MouseEvent e) {
+
+        //iterating through every piece for checks
         for (int s=0;s<allPieces.size();s++) {
+            //if there is a piece selected by the mouse
             if (selectedPiece != null) {
+                //sets the position of the mouse
                 selectedPiece.pos[0] = closestNumber(selectedPiece.pos[0], 80);
                 selectedPiece.pos[1] = closestNumber(selectedPiece.pos[1], 80);
+                
+                //if the selected piece isn't equal to the iterated one
+                if (allPieces.get(s) != selectedPiece) {
+                    //logic for removing piece // if the positions are the same, remove the piece
+                    if (allPieces.get(s).pos[0] == selectedPiece.pos[0] && allPieces.get(s).pos[1] == selectedPiece.pos[1]) {
+                        allPieces.remove(s);
+                    }
+                }
             }
+
         }
 
+        
         selectedPiece = null;
-     }
+    }
+
+    
 
 
 
