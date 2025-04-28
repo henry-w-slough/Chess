@@ -24,25 +24,47 @@ public class Piece {
         
         this.pos = new int[]{x, y};
 
-
-        this.possibleMoves = new ArrayList<int[]>();
-
         this.pieceType = pieceType;
         this.pieceColor = pieceColor;
     
     }
 
 
-    public int[] getPossibleMoves() {
+    public ArrayList<int[]> getPossibleMoves() {
         if (pieceType == "king") {
-            possibleMoves.add(new int[]{pos[0] - 80, pos[1], pos[0] + 80, pos[1], pos[0], pos[1] - 80, pos[1] + 80});
+            return new ArrayList<>() {
+                {
+                    add(new int[]{pos[0] + 80, pos[1]});
+                    add(new int[]{pos[0] - 80, pos[1]});
+                    add(new int[]{pos[0], pos[1] + 80});
+                    add(new int[]{pos[0], pos[1] - 80});
+                    add(new int[]{pos[0] + 80, pos[1] + 80});
+                    add(new int[]{pos[0] - 80, pos[1] - 80});
+                    add(new int[]{pos[0] + 80, pos[1] - 80});
+                    add(new int[]{pos[0] - 80, pos[1] + 80});
+                }
+            };
         }
 
         if (pieceType == "pawn") {
-            possibleMoves.add(new int[]{pos[0], pos[1]-80});
+            return new ArrayList<int[]>() {
+                {
+                    if (pieceColor == 0) { // White pawn
+                        add(new int[]{pos[0], pos[1] - 80}); // Move forward
+                        if (pos[1] == 480) { // Starting position
+                            add(new int[]{pos[0], pos[1] - 160}); // Double move forward
+                        }
+                    } else { // Black pawn
+                        add(new int[]{pos[0], pos[1] + 80}); // Move forward
+                        if (pos[1] == 160) { // Starting position
+                            add(new int[]{pos[0], pos[1] + 160}); // Double move forward
+                        }
+                    }
+                }
+            };
         }
 
 
-        return new int[] {1};
+        return new ArrayList<int[]>();
     }
 }

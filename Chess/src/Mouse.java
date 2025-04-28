@@ -23,12 +23,13 @@ public class Mouse implements MouseInputListener{
 
     public Mouse(ArrayList<Piece> allPieces) {
 
-        mousePosition = new int[]{-50, -100};
+        mousePosition = new int[]{-100, -100};
 
 
         this.allPieces = allPieces;
     
         selectedPiece = null;
+        selectedPieceLastPos = new int[]{400, 400};
 
 
 
@@ -48,19 +49,16 @@ public class Mouse implements MouseInputListener{
     @Override
     public void mousePressed(MouseEvent e) {
         
-
-        //"grabbing" piece on mouse click
-        for (int x=0;x<allPieces.size();x++) {
-
-            //if the mouse is between the x and x + width
-            if (allPieces.get(x).pos[0] <= e.getX() && allPieces.get(x).pos[0] + 80 >= e.getX()) {
-                //if the mouse is between the y and y + height
-                if (allPieces.get(x).pos[1] <= e.getY() && allPieces.get(x).pos[1] + 80 >= e.getY()) {
-                    selectedPiece = allPieces.get(x);
-                }
-            }
-
+    // "Grabbing" a piece on mouse click
+    for (Piece piece : allPieces) {
+        // Check if the mouse is within the bounds of the piece
+        if (piece.pos[0] <= e.getX() && piece.pos[0] + 80 >= e.getX() &&
+            piece.pos[1] <= e.getY() && piece.pos[1] + 80 >= e.getY()) {
+            selectedPiece = piece;
+            selectedPieceLastPos = new int[]{piece.pos[0], piece.pos[1]}; // Store the last position
+            break;
         }
+    }
         
     }
 
@@ -70,19 +68,36 @@ public class Mouse implements MouseInputListener{
     @Override
     public void mouseReleased(MouseEvent e) {
 
+
+        //removing, moving, and snapping piece functionality
         //iterating through every piece for checks
-        for (int s=0;s<allPieces.size();s++) {
+        for (Piece piece : allPieces) {
+
+
             //if there is a piece selected by the mouse
             if (selectedPiece != null) {
                 //sets the position of the mouse
+                if (piece.getPossibleMoves().stream().anyMatch(move -> move[0] == closestNumber(selectedPiece.pos[0], 80))) {
+                    selectedPiece.pos[0] = closestNumber(selectedPiece.pos[0], 80);
+                }
                 selectedPiece.pos[0] = closestNumber(selectedPiece.pos[0], 80);
                 selectedPiece.pos[1] = closestNumber(selectedPiece.pos[1], 80);
                 
-                //if the selected piece isn't equal to the iterated one
-                if (allPieces.get(s) != selectedPiece) {
+
+
+                //makes sure the piece isn't the same as the one selected
+                if (piece != selectedPiece) {
                     //logic for removing piece // if the positions are the same, remove the piece
-                    if (allPieces.get(s).pos[0] == selectedPiece.pos[0] && allPieces.get(s).pos[1] == selectedPiece.pos[1]) {
-                        allPieces.remove(s);
+                    if (piece.pos[0] == selectedPiece.pos[0] && piece.pos[1] == selectedPiece.pos[1]) {
+                        if (piece.pieceColor != selectedPiece.pieceColor) {
+                            //removal
+                            allPieces.remove(piece);
+                        }   
+                        else {
+                            //if the piece is the same color, reset the position of the selected piece
+                            selectedPiece.pos[0] = selectedPieceLastPos[0];
+                            selectedPiece.pos[1] = selectedPieceLastPos[1];
+                        }
                     }
                 }
             }
