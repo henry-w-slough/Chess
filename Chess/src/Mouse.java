@@ -49,16 +49,16 @@ public class Mouse implements MouseInputListener{
     @Override
     public void mousePressed(MouseEvent e) {
         
-    // "Grabbing" a piece on mouse click
-    for (Piece piece : allPieces) {
-        // Check if the mouse is within the bounds of the piece
-        if (piece.pos[0] <= e.getX() && piece.pos[0] + 80 >= e.getX() &&
-            piece.pos[1] <= e.getY() && piece.pos[1] + 80 >= e.getY()) {
-            selectedPiece = piece;
-            selectedPieceLastPos = new int[]{piece.pos[0], piece.pos[1]}; // Store the last position
-            break;
+        // "Grabbing" a piece on mouse click
+        for (Piece piece : allPieces) {
+            // Check if the mouse is within the bounds of the piece
+            if (piece.pos[0] <= e.getX() && piece.pos[0] + 80 >= e.getX() &&
+                piece.pos[1] <= e.getY() && piece.pos[1] + 80 >= e.getY()) {
+                selectedPiece = piece;
+                selectedPieceLastPos = new int[]{piece.pos[0], piece.pos[1]}; // Store the last position
+                break;
+            }
         }
-    }
         
     }
 
@@ -76,14 +76,8 @@ public class Mouse implements MouseInputListener{
 
             //if there is a piece selected by the mouse
             if (selectedPiece != null) {
-                //sets the position of the mouse
-                if (piece.getPossibleMoves().stream().anyMatch(move -> move[0] == closestNumber(selectedPiece.pos[0], 80))) {
-                    selectedPiece.pos[0] = closestNumber(selectedPiece.pos[0], 80);
-                }
                 selectedPiece.pos[0] = closestNumber(selectedPiece.pos[0], 80);
                 selectedPiece.pos[1] = closestNumber(selectedPiece.pos[1], 80);
-                
-
 
                 //makes sure the piece isn't the same as the one selected
                 if (piece != selectedPiece) {

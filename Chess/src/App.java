@@ -96,7 +96,6 @@ public class App {
 
 			//drawing sprites to the screen per the gamePanel function
 			gamePanel.run();
-        
     	}
     	
     	
