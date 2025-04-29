@@ -55,6 +55,7 @@ public class Mouse implements MouseInputListener{
             if (piece.pos[0] <= e.getX() && piece.pos[0] + 80 >= e.getX() &&
                 piece.pos[1] <= e.getY() && piece.pos[1] + 80 >= e.getY()) {
                 selectedPiece = piece;
+
                 selectedPieceLastPos = new int[]{piece.pos[0], piece.pos[1]}; // Store the last position
                 break;
             }
@@ -68,37 +69,36 @@ public class Mouse implements MouseInputListener{
     @Override
     public void mouseReleased(MouseEvent e) {
 
-
+        
         //removing, moving, and snapping piece functionality
         //iterating through every piece for checks
-        for (Piece piece : allPieces) {
+        for (int x=0;x<allPieces.size();x++) {
+            Piece piece = allPieces.get(x);
 
-
+            
             //if there is a piece selected by the mouse
-            if (selectedPiece != null) {
+            if (selectedPiece != piece) {
                 selectedPiece.pos[0] = closestNumber(selectedPiece.pos[0], 80);
                 selectedPiece.pos[1] = closestNumber(selectedPiece.pos[1], 80);
 
-                //makes sure the piece isn't the same as the one selected
-                if (piece != selectedPiece) {
-                    //logic for removing piece // if the positions are the same, remove the piece
-                    if (piece.pos[0] == selectedPiece.pos[0] && piece.pos[1] == selectedPiece.pos[1]) {
-                        if (piece.pieceColor != selectedPiece.pieceColor) {
-                            //removal
-                            allPieces.remove(piece);
-                        }   
-                        else {
-                            //if the piece is the same color, reset the position of the selected piece
-                            selectedPiece.pos[0] = selectedPieceLastPos[0];
-                            selectedPiece.pos[1] = selectedPieceLastPos[1];
-                        }
+
+                //logic for removing piece // if the positions are the same, remove the piece
+                if (piece.pos[0] == selectedPiece.pos[0] && piece.pos[1] == selectedPiece.pos[1]) {
+                    if (piece.pieceColor != selectedPiece.pieceColor) {
+                        //removal
+                        allPieces.remove(piece);
+                    }    
+                    else {
+                        //if the piece is the same color, reset the position of the selected piece
+                        selectedPiece.pos[0] = selectedPieceLastPos[0];
+                        selectedPiece.pos[1] = selectedPieceLastPos[1];
                     }
                 }
-            }
 
+
+            }
         }
 
-        
         selectedPiece = null;
     }
 
