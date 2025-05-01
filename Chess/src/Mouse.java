@@ -78,9 +78,13 @@ public class Mouse implements MouseInputListener{
             
             //if there is a piece selected by the mouse
             if (selectedPiece != piece) {
-                selectedPiece.pos[0] = closestNumber(selectedPiece.pos[0], 80);
-                selectedPiece.pos[1] = closestNumber(selectedPiece.pos[1], 80);
+                selectedPiece.pos = closestNumber(selectedPiece.pos, 80);
 
+                for (int[] pos : selectedPiece.getPossibleMoves()) {
+                    System.out.println(pos[0] + pos[1]);
+                }
+                
+                
 
                 //logic for removing piece // if the positions are the same, remove the piece
                 if (piece.pos[0] == selectedPiece.pos[0] && piece.pos[1] == selectedPiece.pos[1]) {
@@ -146,26 +150,31 @@ public class Mouse implements MouseInputListener{
 
 
 
-    //function to round to the nearest number. Used for tile snapping
-    static int closestNumber(int num, int divis) {
-        // find the quotient
-        int closest = 0;
-        int minDifference = Integer.MAX_VALUE;
+    // Function to round an int[] to the nearest multiple of a divisor
+    static int[] closestNumber(int[] nums, int divis) {
+        int[] rounded = new int[nums.length];
 
-        // Check numbers around n
-        for (int i = num - Math.abs(divis); i <= num + Math.abs(divis); ++i) {
-            if (i % divis == 0) {
-                int difference = Math.abs(num - i);
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            int closest = 0;
+            int minDifference = Integer.MAX_VALUE;
 
-                if (difference < minDifference || (difference == minDifference && Math.abs(i) > Math.abs(closest))) {
-                    closest = i;
-                    minDifference = difference;
+            // Check numbers around num
+            for (int j = num - Math.abs(divis); j <= num + Math.abs(divis); ++j) {
+                if (j % divis == 0) {
+                    int difference = Math.abs(num - j);
+
+                    if (difference < minDifference || (difference == minDifference && Math.abs(j) > Math.abs(closest))) {
+                        closest = j;
+                        minDifference = difference;
+                    }
                 }
             }
 
+            rounded[i] = closest;
         }
 
-        return closest;
+        return rounded;
     }
 
 
