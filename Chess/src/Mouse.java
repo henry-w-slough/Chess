@@ -78,14 +78,8 @@ public class Mouse implements MouseInputListener{
             
             //if there is a piece selected by the mouse
             if (selectedPiece != piece) {
-                selectedPiece.pos = closestNumber(selectedPiece.pos, 80);
 
-                for (int[] pos : selectedPiece.getPossibleMoves()) {
-                    System.out.println(pos[0] + pos[1]);
-                }
                 
-                
-
                 //logic for removing piece // if the positions are the same, remove the piece
                 if (piece.pos[0] == selectedPiece.pos[0] && piece.pos[1] == selectedPiece.pos[1]) {
                     if (piece.pieceColor != selectedPiece.pieceColor) {
@@ -97,6 +91,13 @@ public class Mouse implements MouseInputListener{
                         selectedPiece.pos[0] = selectedPieceLastPos[0];
                         selectedPiece.pos[1] = selectedPieceLastPos[1];
                     }
+                }
+
+
+                selectedPiece.pos = closestNumber(selectedPiece.pos, 80);
+
+                for (int[] pos : selectedPiece.getPossibleMoves()) {
+                    System.out.println(pos[0] + " "+pos[1]);
                 }
 
 
