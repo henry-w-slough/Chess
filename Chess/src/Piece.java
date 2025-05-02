@@ -1,6 +1,5 @@
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class Piece {
     
@@ -10,9 +9,6 @@ public class Piece {
 
     String pieceType;
     int pieceColor;
-
-
-    ArrayList<int[]> possibleMoves;
 
     
 
@@ -29,18 +25,16 @@ public class Piece {
     
     }
 
-
-    public ArrayList<int[]> getPossibleMoves() {
-
-        if (pieceType == "pawn") {
-            return new ArrayList<int[]>() {
-                {
-                    add(new int[]{pos[0], pos[1] - 80}); // Move forward
-                }
-            };
+    //instead of returning an arraylist
+    public boolean isMovePossible(int[] move) {
+                                        
+        if (this.pieceType == "pawn") {
+            if (move[1] == this.pos[1] - 160) {
+                return true;
+            }
         }
 
-
-        return new ArrayList<int[]>();
+        System.out.println("MOVE: "+move[0]+" "+move[1]+"  POS: "+this.pos[0]+" "+this.pos[1]);
+        return false;
     }
 }

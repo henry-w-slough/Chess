@@ -69,39 +69,46 @@ public class Mouse implements MouseInputListener{
     @Override
     public void mouseReleased(MouseEvent e) {
 
-        
-        //removing, moving, and snapping piece functionality
-        //iterating through every piece for checks
-        for (int x=0;x<allPieces.size();x++) {
-            Piece piece = allPieces.get(x);
+        if (selectedPiece == null) {
+            return;
+        }
 
-            
-            //if there is a piece selected by the mouse
-            if (selectedPiece != piece) {
 
-                
+        if (selectedPiece.isMovePossible(roundPosition(mousePosition, 80))) {
+            selectedPiece.pos = roundPosition(mousePosition, 80);
+            //removing, moving, and snapping piece functionality
+            //iterating through every piece for checks
+            for (int x=0;x<allPieces.size();x++) {
+                Piece piece = allPieces.get(x);
+
+                if (selectedPiece == piece) {
+                    return;
+                }
+
                 //logic for removing piece // if the positions are the same, remove the piece
                 if (piece.pos[0] == selectedPiece.pos[0] && piece.pos[1] == selectedPiece.pos[1]) {
+
                     if (piece.pieceColor != selectedPiece.pieceColor) {
                         //removal
                         allPieces.remove(piece);
                     }    
+                    //if pieces are the same color
                     else {
-                        //if the piece is the same color, reset the position of the selected piece
+                        //reset the position of the selected piece
                         selectedPiece.pos[0] = selectedPieceLastPos[0];
                         selectedPiece.pos[1] = selectedPieceLastPos[1];
                     }
                 }
-
-
-                selectedPiece.pos = closestNumber(selectedPiece.pos, 80);
-
-                for (int[] pos : selectedPiece.getPossibleMoves()) {
-                    System.out.println(pos[0] + " "+pos[1]);
-                }
-
-
+                
             }
+
+            //snapping piece to grid (no matter where it is)
+            selectedPiece.pos = roundPosition(selectedPiece.pos, 80);
+        }
+
+        else {
+            selectedPiece.pos[0] = selectedPieceLastPos[0];
+            selectedPiece.pos[1] = selectedPieceLastPos[1];
         }
 
         selectedPiece = null;
@@ -151,31 +158,30 @@ public class Mouse implements MouseInputListener{
 
 
 
-    // Function to round an int[] to the nearest multiple of a divisor
-    static int[] closestNumber(int[] nums, int divis) {
-        int[] rounded = new int[nums.length];
+    // function to round the number
+    static int[] roundPosition(int[] pos, int divis)
+    {
+        //first number
+        // Smaller multiple
+        int a = (pos[0] / divis) * divis;
+         
+        // Larger multiple
+        int b = a + divis;
+     
+        // Return of closest of two
+        int x = (pos[0] - a >= b - pos[0])? b : a;
 
-        for (int i = 0; i < nums.length; i++) {
-            int num = nums[i];
-            int closest = 0;
-            int minDifference = Integer.MAX_VALUE;
+        //second number
+        // Smaller multiple
+        a = (pos[1] / divis) * divis;
+         
+        // Larger multiple
+        b = a + divis;
+     
+        // Return of closest of two
+        int y = (pos[1] - a >= b - pos[1])? b : a;
 
-            // Check numbers around num
-            for (int j = num - Math.abs(divis); j <= num + Math.abs(divis); ++j) {
-                if (j % divis == 0) {
-                    int difference = Math.abs(num - j);
-
-                    if (difference < minDifference || (difference == minDifference && Math.abs(j) > Math.abs(closest))) {
-                        closest = j;
-                        minDifference = difference;
-                    }
-                }
-            }
-
-            rounded[i] = closest;
-        }
-
-        return rounded;
+        return new int[]{x, y};
     }
 
 
